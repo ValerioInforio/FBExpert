@@ -7,7 +7,7 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, FireDAC.Stan.Intf, FireDAC.Stan.Option,
   FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf,
   FireDAC.DApt.Intf, Data.DB, FireDAC.Comp.DataSet, FireDAC.Comp.Client,
-  FireDAC.Stan.Async, FireDAC.DApt, Vcl.ExtCtrls, Vcl.ComCtrls,
+  FireDAC.Stan.Async, FireDAC.DApt, Vcl.ExtCtrls, Vcl.ComCtrls, System.Generics.Collections,
   System.ImageList, Vcl.ImgList;
 
 type
@@ -20,6 +20,7 @@ type
     procedure TVDatabasesClick(Sender: TObject);
   private
     { Private declarations }
+    ListFDConnection: TObjectList<TFDConnection>;
   public
     { Public declarations }
     procedure CarregarDatabases;
@@ -48,7 +49,6 @@ begin
       while not(DSDatabases.Eof) do
         begin
           DatabaseNode := TVDatabases.Items.AddChild(nil, DSDatabases.FieldByName('ALIAS').AsString);
-          DatabaseNode.
 //          DatabaseNode.Enabled  := False;
           DSDatabases.Next;
         end;
