@@ -1,0 +1,43 @@
+object frmPrincipal: TfrmPrincipal
+  Left = 0
+  Top = 0
+  Caption = 'FBExpert'
+  ClientHeight = 407
+  ClientWidth = 875
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  OnCreate = FormCreate
+  PixelsPerInch = 96
+  TextHeight = 13
+  object PNLDatabases: TPanel
+    Left = 0
+    Top = 0
+    Width = 185
+    Height = 407
+    Align = alLeft
+    TabOrder = 0
+    object Panel1: TPanel
+      Left = 1
+      Top = 1
+      Width = 183
+      Height = 8
+      Align = alTop
+      BevelOuter = bvNone
+      TabOrder = 0
+    end
+    object TVDatabases: TTreeView
+      Left = 1
+      Top = 9
+      Width = 183
+      Height = 397
+      Align = alClient
+      Indent = 19
+      TabOrder = 1
+    end
+  end
+end
