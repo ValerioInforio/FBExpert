@@ -7,17 +7,22 @@ uses
   FireDAC.Stan.Error, FireDAC.UI.Intf, FireDAC.Phys.Intf, FireDAC.Stan.Def,
   FireDAC.Stan.Pool, FireDAC.Stan.Async, FireDAC.Phys, FireDAC.Phys.SQLite,
   FireDAC.Phys.SQLiteDef, FireDAC.Stan.ExprFuncs, FireDAC.VCLUI.Wait, Data.DB,
-  FireDAC.Comp.Client, FireDAC.Phys.FB, FireDAC.Phys.FBDef, Vcl.Forms, Vcl.Dialogs;
+  FireDAC.Comp.Client, FireDAC.Phys.FB, FireDAC.Phys.FBDef, Vcl.Forms, Vcl.Dialogs,
+  FireDAC.Stan.Param, FireDAC.DatS, FireDAC.DApt.Intf, FireDAC.DApt,
+  FireDAC.Comp.DataSet, FireDAC.Phys.IBDef, FireDAC.Phys.IBBase, FireDAC.Phys.IB;
 
 type
   TdmFBExpert = class(TDataModule)
     FDCSQLite: TFDConnection;
-    FDConnection1: TFDConnection;
+    FDConexao: TFDConnection;
+    FDQDatabases: TFDQuery;
+    DataSource1: TDataSource;
     procedure DataModuleCreate(Sender: TObject);
   private
     { Private declarations }
   public
     { Public declarations }
+    function GetDatabases: TDataSet;
   end;
 
 var
@@ -34,6 +39,16 @@ begin
   FDCSQLite.Close();
   FDCSQLite.Params.Values['Database'] :=  ExtractFilePath(Application.ExeName) + 'FBExpert.db';
   FDCSQLite.Open();
+end;
+
+function TdmFBExpert.GetDatabases: TDataSet;
+begin
+  FDQDatabases.Close();
+  FDQDatabases.SQL.Text := ' SELECT * FROM DATABASES ';
+  FDQDatabases.Open();
+  FDQDatabases.FetchAll();
+
+  Result := FDQDatabases;
 end;
 
 end.

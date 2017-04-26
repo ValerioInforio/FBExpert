@@ -13,9 +13,9 @@ object dmFBExpert: TdmFBExpert
   end
   object FDConexao: TFDConnection
     Params.Strings = (
-      'DriverID=FB'
       'User_Name=sysdba'
-      'Password=masterkey')
+      'Password=masterkey'
+      'DriverID=FB')
     LoginPrompt = False
     Left = 208
     Top = 16

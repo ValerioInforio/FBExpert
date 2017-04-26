@@ -8,7 +8,7 @@ uses
   FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf,
   FireDAC.DApt.Intf, Data.DB, FireDAC.Comp.DataSet, FireDAC.Comp.Client,
   FireDAC.Stan.Async, FireDAC.DApt, Vcl.ExtCtrls, Vcl.ComCtrls, System.Generics.Collections,
-  System.ImageList, Vcl.ImgList;
+  System.ImageList, Vcl.ImgList, Vcl.Grids, Vcl.DBGrids;
 
 type
   TfrmPrincipal = class(TForm)
@@ -16,6 +16,8 @@ type
     Panel1: TPanel;
     TVDatabases: TTreeView;
     ImageList: TImageList;
+    DataSource1: TDataSource;
+    DBGrid1: TDBGrid;
     procedure FormCreate(Sender: TObject);
     procedure TVDatabasesClick(Sender: TObject);
   private
@@ -43,20 +45,28 @@ var
 begin
   DSDatabases := dmFBExpert.GetDatabases;
   TVDatabases.Items.Clear;
+
+  ListFDConnection := TObjectList<TFDConnection>.Create();
   if not(DSDatabases.IsEmpty) then
     begin
-      DSDatabases.First;
+      DSDatabases.First();
 
       while not(DSDatabases.Eof) do
         begin
           DatabaseNode := TVDatabases.Items.AddChild(nil, DSDatabases.FieldByName('ALIAS').AsString);
-          FDConnection := TFDConnection.Create(Self);
-          FDConnection.DriverName := DSDatabases.FieldByName('ALIAS').AsString;
-          FDConnection.Params.Values[''] :=
-          FDConnection.Params.Close;
 
-//          DatabaseNode.Enabled  := False;
-          DSDatabases.Next;
+          FDConnection := TFDConnection.Create(Self);
+          FDConnection.DriverName := DSDatabases.FieldByName('DRIVER_ID').AsString;
+          FDConnection.Params.Values['Database']  := DSDatabases.FieldByName('DATABASE').AsString;
+          FDConnection.Params.Values['User_Name'] := DSDatabases.FieldByName('USER_NAME').AsString;
+          FDConnection.Params.Values['Password']  := DSDatabases.FieldByName('PASSWORD').AsString;
+          FDConnection.Params.Values['Protocol']  := DSDatabases.FieldByName('PROTOCOL').AsString;
+          FDConnection.Params.Values['Server']    := DSDatabases.FieldByName('SERVER').AsString;
+          FDConnection.Params.Values['Port']      := DSDatabases.FieldByName('PORT').AsString;
+          FDConnection.Close();
+          ListFDConnection.Add(FDConnection);
+
+          DSDatabases.Next();
         end;
 
 
@@ -74,6 +84,8 @@ procedure TfrmPrincipal.TVDatabasesClick(Sender: TObject);
 begin
   ShowMessage(TVDatabases.Selected.Text);
   ShowMessage(TVDatabases.Selected.Index.ToString());
+  ListFDConnection[TVDatabases.Selected.Index].Open();
+  ShowMessage('AAA');
 end;
 
 end.

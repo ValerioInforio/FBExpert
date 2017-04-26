@@ -14,16 +14,22 @@ object dmFBExpert: TdmFBExpert
   end
   object FDConexao: TFDConnection
     Params.Strings = (
-      'DriverID=FB'
       'User_Name=sysdba'
-      'Password=masterkey')
+      'Password=masterkey'
+      'DriverID=FB')
     LoginPrompt = False
     Left = 208
     Top = 16
   end
   object FDQDatabases: TFDQuery
     Connection = FDCSQLite
+    SQL.Strings = (
+      'SELECT * FROM DATABASES')
     Left = 40
     Top = 88
+  end
+  object DataSource1: TDataSource
+    Left = 136
+    Top = 112
   end
 end

@@ -41,6 +41,7 @@ object frmPrincipal: TfrmPrincipal
       ReadOnly = True
       RightClickSelect = True
       TabOrder = 1
+      OnClick = TVDatabasesClick
       OnDblClick = TVDatabasesDblClick
     end
   end

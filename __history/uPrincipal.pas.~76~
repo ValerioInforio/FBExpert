@@ -94,6 +94,8 @@ begin
   ListFDConnection[TVDatabases.Selected.Index].GetTableNames('', '', '', Tables);
   ListFDConnection[TVDatabases.Selected.Index].Offline();
 
+  ListFDConnection[TVDatabases.Selected.Index].GetTableNames('', '', '', Tables);
+
   MenuNode :=  TVDatabases.Items.addChild(TVDatabases.Selected, 'Tables (' + Tables.Count.ToString() + ')');
       MenuNode.ImageIndex := 0;
   for I := 0 to (Tables.Count - 1) do

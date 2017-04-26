@@ -15,12 +15,14 @@ type
   TdmFBExpert = class(TDataModule)
     FDCSQLite: TFDConnection;
     FDConexao: TFDConnection;
-    FDQDatabase: TFDQuery;
+    FDQDatabases: TFDQuery;
+    DataSource1: TDataSource;
     procedure DataModuleCreate(Sender: TObject);
   private
     { Private declarations }
   public
     { Public declarations }
+    function GetDatabases: TDataSet;
   end;
 
 var
@@ -37,6 +39,16 @@ begin
   FDCSQLite.Close();
   FDCSQLite.Params.Values['Database'] :=  ExtractFilePath(Application.ExeName) + 'FBExpert.db';
   FDCSQLite.Open();
+end;
+
+function TdmFBExpert.GetDatabases: TDataSet;
+begin
+  FDQDatabases.Close();
+  FDQDatabases.SQL.Text := ' SELECT * FROM DATABASES ';
+  FDQDatabases.Open();
+  FDQDatabases.FetchAll();
+
+  Result := FDQDatabases;
 end;
 
 end.

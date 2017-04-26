@@ -9,7 +9,7 @@ uses
   FireDAC.Phys.SQLiteDef, FireDAC.Stan.ExprFuncs, FireDAC.VCLUI.Wait, Data.DB,
   FireDAC.Comp.Client, FireDAC.Phys.FB, FireDAC.Phys.FBDef, Vcl.Forms, Vcl.Dialogs,
   FireDAC.Stan.Param, FireDAC.DatS, FireDAC.DApt.Intf, FireDAC.DApt,
-  FireDAC.Comp.DataSet;
+  FireDAC.Comp.DataSet, FireDAC.Phys.IBDef, FireDAC.Phys.IBBase, FireDAC.Phys.IB;
 
 type
   TdmFBExpert = class(TDataModule)
@@ -38,7 +38,6 @@ procedure TdmFBExpert.DataModuleCreate(Sender: TObject);
 begin
   FDCSQLite.Close();
   FDCSQLite.Params.Values['Database'] :=  ExtractFilePath(Application.ExeName) + 'FBExpert.db';
-  FDCSQLite.Open();
 end;
 
 function TdmFBExpert.GetDatabases: TDataSet;
