@@ -2,7 +2,7 @@ object frmPrincipal: TfrmPrincipal
   Left = 0
   Top = 0
   Caption = 'FBExpert'
-  ClientHeight = 407
+  ClientHeight = 347
   ClientWidth = 875
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -10,6 +10,7 @@ object frmPrincipal: TfrmPrincipal
   Font.Height = -11
   Font.Name = 'Tahoma'
   Font.Style = []
+  Menu = MainMenu1
   OldCreateOrder = False
   OnCreate = FormCreate
   PixelsPerInch = 96
@@ -18,7 +19,7 @@ object frmPrincipal: TfrmPrincipal
     Left = 0
     Top = 0
     Width = 185
-    Height = 407
+    Height = 347
     Align = alLeft
     TabOrder = 0
     object Panel1: TPanel
@@ -34,10 +35,11 @@ object frmPrincipal: TfrmPrincipal
       Left = 1
       Top = 9
       Width = 183
-      Height = 397
+      Height = 337
       Align = alClient
       Images = ImageList
       Indent = 19
+      PopupMenu = PopupMenu1
       ReadOnly = True
       RightClickSelect = True
       TabOrder = 1
@@ -61,7 +63,7 @@ object frmPrincipal: TfrmPrincipal
     Left = 792
     Top = 16
     Bitmap = {
-      494C010101002400300010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010101002400400010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000001000000001002000000000000010
       0000000000000000000000000000000000000000000000000000FEFEFE01FEFE
       FE05FEFEFE0FFEFEFE1DFEFEFE2BFEFEFE32FEFEFE31FEFEFE27FEFEFE19FEFE
@@ -215,5 +217,31 @@ object frmPrincipal: TfrmPrincipal
     UpdateOptions.AutoCommitUpdates = True
     Left = 304
     Top = 136
+  end
+  object MainMenu1: TMainMenu
+    Left = 672
+    Top = 144
+    object Database1: TMenuItem
+      Caption = 'Database'
+      object RegisterDatabase1: TMenuItem
+        Caption = 'Register Database'
+        OnClick = RegisterDatabase1Click
+      end
+    end
+    object View1: TMenuItem
+      Caption = 'View'
+      object DBExplorer1: TMenuItem
+        Caption = 'DB Explorer'
+        OnClick = DBExplorer1Click
+      end
+    end
+  end
+  object PopupMenu1: TPopupMenu
+    Left = 632
+    Top = 232
+    object DatabaseRegistrationInfo1: TMenuItem
+      Caption = 'Database Registration Info'
+      OnClick = DatabaseRegistrationInfo1Click
+    end
   end
 end

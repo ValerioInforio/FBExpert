@@ -2,7 +2,7 @@ object frmPrincipal: TfrmPrincipal
   Left = 0
   Top = 0
   Caption = 'FBExpert'
-  ClientHeight = 407
+  ClientHeight = 367
   ClientWidth = 875
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -10,6 +10,7 @@ object frmPrincipal: TfrmPrincipal
   Font.Height = -11
   Font.Name = 'Tahoma'
   Font.Style = []
+  Menu = MainMenu1
   OldCreateOrder = False
   OnCreate = FormCreate
   PixelsPerInch = 96
@@ -18,7 +19,7 @@ object frmPrincipal: TfrmPrincipal
     Left = 0
     Top = 0
     Width = 185
-    Height = 407
+    Height = 367
     Align = alLeft
     TabOrder = 0
     object Panel1: TPanel
@@ -34,20 +35,34 @@ object frmPrincipal: TfrmPrincipal
       Left = 1
       Top = 9
       Width = 183
-      Height = 397
+      Height = 357
       Align = alClient
       Images = ImageList
       Indent = 19
       ReadOnly = True
       RightClickSelect = True
       TabOrder = 1
+      OnDblClick = TVDatabasesDblClick
     end
+  end
+  object DBGrid1: TDBGrid
+    Left = 191
+    Top = 16
+    Width = 442
+    Height = 241
+    DataSource = DataSource1
+    TabOrder = 1
+    TitleFont.Charset = DEFAULT_CHARSET
+    TitleFont.Color = clWindowText
+    TitleFont.Height = -11
+    TitleFont.Name = 'Tahoma'
+    TitleFont.Style = []
   end
   object ImageList: TImageList
     Left = 792
     Top = 16
     Bitmap = {
-      494C0101010024002C0010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C0101010024003C0010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000001000000001002000000000000010
       0000000000000000000000000000000000000000000000000000FEFEFE01FEFE
       FE05FEFEFE0FFEFEFE1DFEFEFE2BFEFEFE32FEFEFE31FEFEFE27FEFEFE19FEFE
@@ -185,5 +200,39 @@ object frmPrincipal: TfrmPrincipal
       0001000000000000000100000000000000010000000000008001000000000000
       C003000000000000F00F00000000000000000000000000000000000000000000
       000000000000}
+  end
+  object DataSource1: TDataSource
+    DataSet = dmFBExpert.FDQDatabases
+    Left = 432
+    Top = 208
+  end
+  object FDMemTable1: TFDMemTable
+    FetchOptions.AssignedValues = [evMode]
+    FetchOptions.Mode = fmAll
+    ResourceOptions.AssignedValues = [rvSilentMode]
+    ResourceOptions.SilentMode = True
+    UpdateOptions.AssignedValues = [uvCheckRequired, uvAutoCommitUpdates]
+    UpdateOptions.CheckRequired = False
+    UpdateOptions.AutoCommitUpdates = True
+    Left = 304
+    Top = 136
+  end
+  object MainMenu1: TMainMenu
+    Left = 672
+    Top = 144
+    object Database1: TMenuItem
+      Caption = 'Database'
+      object RegisterDatabase1: TMenuItem
+        Caption = 'Register Database'
+        OnClick = RegisterDatabase1Click
+      end
+    end
+    object View1: TMenuItem
+      Caption = 'View'
+      object DBExplorer1: TMenuItem
+        Caption = 'DB Explorer'
+        OnClick = DBExplorer1Click
+      end
+    end
   end
 end

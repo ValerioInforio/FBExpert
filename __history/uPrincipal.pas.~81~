@@ -8,7 +8,7 @@ uses
   FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf,
   FireDAC.DApt.Intf, Data.DB, FireDAC.Comp.DataSet, FireDAC.Comp.Client,
   FireDAC.Stan.Async, FireDAC.DApt, Vcl.ExtCtrls, Vcl.ComCtrls, System.Generics.Collections,
-  System.ImageList, Vcl.ImgList, Vcl.Grids, Vcl.DBGrids;
+  System.ImageList, Vcl.ImgList, Vcl.Grids, Vcl.DBGrids, Vcl.Menus;
 
 type
   TfrmPrincipal = class(TForm)
@@ -19,9 +19,15 @@ type
     DataSource1: TDataSource;
     DBGrid1: TDBGrid;
     FDMemTable1: TFDMemTable;
+    MainMenu1: TMainMenu;
+    Database1: TMenuItem;
+    View1: TMenuItem;
+    DBExplorer1: TMenuItem;
+    RegisterDatabase1: TMenuItem;
     procedure FormCreate(Sender: TObject);
-    procedure TVDatabasesClick(Sender: TObject);
     procedure TVDatabasesDblClick(Sender: TObject);
+    procedure DBExplorer1Click(Sender: TObject);
+    procedure RegisterDatabase1Click(Sender: TObject);
   private
     { Private declarations }
     ListFDConnection: TObjectList<TFDConnection>;
@@ -77,16 +83,19 @@ begin
 
 end;
 
+procedure TfrmPrincipal.DBExplorer1Click(Sender: TObject);
+begin
+  PNLDatabases.Visible := not PNLDatabases.Visible;
+end;
+
 procedure TfrmPrincipal.FormCreate(Sender: TObject);
 begin
   CarregarDatabases;
 end;
 
-procedure TfrmPrincipal.TVDatabasesClick(Sender: TObject);
+procedure TfrmPrincipal.RegisterDatabase1Click(Sender: TObject);
 begin
-  ShowMessage(TVDatabases.Selected.Text);
-  ShowMessage(TVDatabases.Selected.Index.ToString());
-  ShowMessage('Conectado');
+  Application.CreateForm(,);
 end;
 
 procedure TfrmPrincipal.TVDatabasesDblClick(Sender: TObject);

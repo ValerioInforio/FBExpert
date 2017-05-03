@@ -3,8 +3,7 @@ program FBExpert;
 uses
   Vcl.Forms,
   uPrincipal in 'uPrincipal.pas' {frmPrincipal},
-  uDMFBExpert in 'uDMFBExpert.pas' {dmFBExpert: TDataModule},
-  uRegistrarDatabase in 'uRegistrarDatabase.pas' {frmRegistrarDatabase};
+  uDMFBExpert in 'uDMFBExpert.pas' {dmFBExpert: TDataModule};
 
 {$R *.res}
 

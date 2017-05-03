@@ -8,7 +8,7 @@ uses
   FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf,
   FireDAC.DApt.Intf, Data.DB, FireDAC.Comp.DataSet, FireDAC.Comp.Client,
   FireDAC.Stan.Async, FireDAC.DApt, Vcl.ExtCtrls, Vcl.ComCtrls, System.Generics.Collections,
-  System.ImageList, Vcl.ImgList, Vcl.Grids, Vcl.DBGrids;
+  System.ImageList, Vcl.ImgList, Vcl.Grids, Vcl.DBGrids, Vcl.Menus;
 
 type
   TfrmPrincipal = class(TForm)
@@ -19,8 +19,18 @@ type
     DataSource1: TDataSource;
     DBGrid1: TDBGrid;
     FDMemTable1: TFDMemTable;
+    MainMenu1: TMainMenu;
+    Database1: TMenuItem;
+    View1: TMenuItem;
+    DBExplorer1: TMenuItem;
+    RegisterDatabase1: TMenuItem;
+    PopupMenu1: TPopupMenu;
+    DatabaseRegistrationInfo1: TMenuItem;
     procedure FormCreate(Sender: TObject);
-    procedure TVDatabasesClick(Sender: TObject);
+    procedure TVDatabasesDblClick(Sender: TObject);
+    procedure DBExplorer1Click(Sender: TObject);
+    procedure RegisterDatabase1Click(Sender: TObject);
+    procedure DatabaseRegistrationInfo1Click(Sender: TObject);
   private
     { Private declarations }
     ListFDConnection: TObjectList<TFDConnection>;
@@ -36,7 +46,7 @@ implementation
 
 {$R *.dfm}
 
-uses uDMFBExpert;
+uses uDMFBExpert, uRegistrarDatabase;
 
 procedure TfrmPrincipal.CarregarDatabases;
 var
@@ -76,17 +86,48 @@ begin
 
 end;
 
+procedure TfrmPrincipal.DatabaseRegistrationInfo1Click(Sender: TObject);
+begin
+  frmRegistrarDatabase := TfrmRegistrarDatabase.Create(Application, '');
+  frmRegistrarDatabase.ShowModal;
+end;
+
+procedure TfrmPrincipal.DBExplorer1Click(Sender: TObject);
+begin
+  PNLDatabases.Visible := not PNLDatabases.Visible;
+end;
+
 procedure TfrmPrincipal.FormCreate(Sender: TObject);
 begin
   CarregarDatabases;
 end;
 
-procedure TfrmPrincipal.TVDatabasesClick(Sender: TObject);
+procedure TfrmPrincipal.RegisterDatabase1Click(Sender: TObject);
 begin
-  ShowMessage(TVDatabases.Selected.Text);
-  ShowMessage(TVDatabases.Selected.Index.ToString());
-  ListFDConnection[TVDatabases.Selected.Index].Open();
-  ShowMessage('Conectado');
+  frmRegistrarDatabase := TfrmRegistrarDatabase.Create(Application, '');
+  frmRegistrarDatabase.ShowModal;
+end;
+
+procedure TfrmPrincipal.TVDatabasesDblClick(Sender: TObject);
+var
+  I: Integer;
+  J: Integer;
+  Tables: TStringList;
+  MenuNode: TTreeNode;
+  TableNode: TTreeNode;
+begin
+  Tables := TStringList.Create();
+
+  ListFDConnection[TVDatabases.Selected.Index].GetTableNames('', '', '', Tables);
+  ListFDConnection[TVDatabases.Selected.Index].Offline();
+
+  MenuNode :=  TVDatabases.Items.addChild(TVDatabases.Selected, 'Tables (' + Tables.Count.ToString() + ')');
+      MenuNode.ImageIndex := 0;
+  for I := 0 to (Tables.Count - 1) do
+    begin
+      TableNode := TVDatabases.Items.addChild(MenuNode, Tables[i]);
+      TableNode.ImageIndex := 1;
+    end;
 end;
 
 end.
