@@ -1,10 +1,9 @@
 object frmRegistrarDatabase: TfrmRegistrarDatabase
   Left = 0
   Top = 0
-  BorderStyle = bsDialog
   Caption = 'frmRegistrarDatabase'
-  ClientHeight = 230
-  ClientWidth = 466
+  ClientHeight = 244
+  ClientWidth = 456
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -18,8 +17,8 @@ object frmRegistrarDatabase: TfrmRegistrarDatabase
   object Panel1: TPanel
     Left = 0
     Top = 0
-    Width = 466
-    Height = 230
+    Width = 456
+    Height = 244
     Align = alClient
     BevelOuter = bvNone
     TabOrder = 0
@@ -162,7 +161,7 @@ object frmRegistrarDatabase: TfrmRegistrarDatabase
     end
     object BTNSalvar: TBitBtn
       Left = 130
-      Top = 189
+      Top = 192
       Width = 89
       Height = 25
       Caption = 'Salvar'
@@ -171,7 +170,7 @@ object frmRegistrarDatabase: TfrmRegistrarDatabase
     end
     object BTNSair: TBitBtn
       Left = 225
-      Top = 189
+      Top = 192
       Width = 89
       Height = 25
       Caption = 'Sair'
@@ -180,7 +179,11 @@ object frmRegistrarDatabase: TfrmRegistrarDatabase
     end
   end
   object DSDatabases: TDataSource
-    Left = 368
-    Top = 112
+    Left = 208
+    Top = 80
+  end
+  object FDQuery1: TFDQuery
+    Left = 224
+    Top = 128
   end
 end

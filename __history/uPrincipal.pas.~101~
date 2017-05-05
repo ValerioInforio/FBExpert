@@ -13,9 +13,11 @@ uses
 type
   TfrmPrincipal = class(TForm)
     PNLDatabases: TPanel;
+    Panel1: TPanel;
     TVDatabases: TTreeView;
     ImageList: TImageList;
     DataSource1: TDataSource;
+    DBGrid1: TDBGrid;
     FDMemTable1: TFDMemTable;
     MainMenu1: TMainMenu;
     Database1: TMenuItem;
@@ -26,8 +28,6 @@ type
     DatabaseRegistrationInfo1: TMenuItem;
     UnregisterDatabase1: TMenuItem;
     UnregisterDatabase2: TMenuItem;
-    PNLPrincipal: TPanel;
-    estando1: TMenuItem;
     procedure FormCreate(Sender: TObject);
     procedure TVDatabasesDblClick(Sender: TObject);
     procedure DBExplorer1Click(Sender: TObject);
@@ -35,7 +35,6 @@ type
     procedure DatabaseRegistrationInfo1Click(Sender: TObject);
     procedure UnregisterDatabase1Click(Sender: TObject);
     procedure UnregisterDatabase2Click(Sender: TObject);
-    procedure estando1Click(Sender: TObject);
   private
     { Private declarations }
     ListFDConnection: TObjectList<TFDConnection>;
@@ -52,7 +51,7 @@ implementation
 
 {$R *.dfm}
 
-uses uDMFBExpert, uRegistrarDatabase, uTabela;
+uses uDMFBExpert, uRegistrarDatabase;
 
 procedure TfrmPrincipal.CarregarDatabases();
 var
@@ -97,7 +96,7 @@ end;
 procedure TfrmPrincipal.DatabaseRegistrationInfo1Click(Sender: TObject);
 begin
   frmRegistrarDatabase := TfrmRegistrarDatabase.Create(Application, ListIDDatabases[TVDatabases.Selected.Index]);
-  frmRegistrarDatabase.ShowModal();
+  frmRegistrarDatabase.ShowModal;
   frmRegistrarDatabase.Free();
   CarregarDatabases();
 end;
@@ -105,13 +104,6 @@ end;
 procedure TfrmPrincipal.DBExplorer1Click(Sender: TObject);
 begin
   PNLDatabases.Visible := not PNLDatabases.Visible;
-end;
-
-procedure TfrmPrincipal.estando1Click(Sender: TObject);
-begin
-  Application.CreateForm(TfrmTabela, frmTabela);
-  frmTabela.Parent :=  PNLPrincipal;
-  frmTabela.Show();
 end;
 
 procedure TfrmPrincipal.FormCreate(Sender: TObject);
@@ -122,7 +114,7 @@ end;
 procedure TfrmPrincipal.RegisterDatabase1Click(Sender: TObject);
 begin
   frmRegistrarDatabase := TfrmRegistrarDatabase.Create(Application, 0);
-  frmRegistrarDatabase.ShowModal();
+  frmRegistrarDatabase.ShowModal;
   frmRegistrarDatabase.Free();
   CarregarDatabases();
 end;
@@ -140,7 +132,7 @@ begin
   ListFDConnection[TVDatabases.Selected.Index].GetTableNames('', '', '', Tables);
 
   MenuNode :=  TVDatabases.Items.addChild(TVDatabases.Selected, 'Tables (' + Tables.Count.ToString() + ')');
-  MenuNode.ImageIndex := 0;
+      MenuNode.ImageIndex := 0;
   for I := 0 to (Tables.Count - 1) do
     begin
       TableNode := TVDatabases.Items.addChild(MenuNode, Tables[i]);

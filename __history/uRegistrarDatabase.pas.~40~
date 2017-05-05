@@ -38,7 +38,7 @@ type
     vAlias : String;
     { Private declarations }
   public
-    constructor Create(AOwner : TComponent; pID : Integer);
+    constructor Create(AOwner : TComponent; pID : Integer));
     { Public declarations }
   end;
 

@@ -25,9 +25,8 @@ type
     { Private declarations }
   public
     { Public declarations }
-    function GetDatabases(): TDataSet;
-    function GetDatabase(ID: Integer): TDataSet;
-    procedure DeleteDatabase(ID: Integer);
+    function GetDatabases: TDataSet;
+    function GetDatabase(Alias: String): TDataSet;
   end;
 
 var
@@ -45,24 +44,19 @@ begin
   FDCSQLite.Params.Values['Database'] :=  ExtractFilePath(Application.ExeName) + 'FBExpert.db';
 end;
 
-procedure TdmFBExpert.DeleteDatabase(ID: Integer);
-begin
-  GetDatabase(ID);
-  FDQDatabases.Delete;
-end;
-
-function TdmFBExpert.GetDatabase(ID: Integer): TDataSet;
+function TdmFBExpert.GetDatabase(Alias: String): TDataSet;
 begin
   FDQDatabases.Close();
   FDQDatabases.SQL.Text := ' SELECT * FROM DATABASES ' +
-                           '  WHERE ID = ' + ID.ToString;
+                           '  WHERE ALIAS = ' + Alias.QuotedString();
   FDQDatabases.Open();
   FDQDatabases.FetchAll();
+  FDCSQLite.Offline;
 
   Result := FDQDatabases;
 end;
 
-function TdmFBExpert.GetDatabases(): TDataSet;
+function TdmFBExpert.GetDatabases: TDataSet;
 begin
   FDQDatabases.Close();
   FDQDatabases.SQL.Text := ' SELECT * FROM DATABASES ';

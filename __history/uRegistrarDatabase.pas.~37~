@@ -38,7 +38,7 @@ type
     vAlias : String;
     { Private declarations }
   public
-    constructor Create(AOwner : TComponent; pID : Integer);
+    constructor Create(AOwner : TComponent; pAlias : String);
     { Public declarations }
   end;
 
@@ -58,17 +58,18 @@ end;
 
 procedure TfrmRegistrarDatabase.BTNSalvarClick(Sender: TObject);
 begin
-//  if TestarCampos() then
-
+//  dmFBExpert.FDCSQLite.Close;
+//  dmFBExpert.FDCSQLite.Open;
   DSDatabases.DataSet.Post();
   Close();
+//  (DSDatabases.DataSet as TFDQuery).ApplyUpdates(0);
 end;
 
-Constructor TfrmRegistrarDatabase.Create(AOwner : TComponent; pID : Integer);
+Constructor TfrmRegistrarDatabase.Create(AOwner : TComponent; pAlias : String);
 begin
   inherited Create(AOwner);
-//  vAlias := pAlias;
-  DSDatabases.DataSet := dmFBExpert.GetDatabase(pID);
+  vAlias := pAlias;
+  DSDatabases.DataSet := dmFBExpert.GetDatabase(vAlias.Trim());
   if DSDatabases.DataSet.IsEmpty then
      DSDatabases.DataSet.Append
   else

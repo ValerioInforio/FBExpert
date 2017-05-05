@@ -7,6 +7,7 @@ object dmFBExpert: TdmFBExpert
     Params.Strings = (
       'Database=C:\FBExpert\FBExpert.db'
       'DriverID=SQLite')
+    Connected = True
     LoginPrompt = False
     Left = 40
     Top = 16

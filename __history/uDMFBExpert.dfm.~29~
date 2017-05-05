@@ -7,6 +7,7 @@ object dmFBExpert: TdmFBExpert
     Params.Strings = (
       'Database=C:\FBExpert\FBExpert.db'
       'DriverID=SQLite')
+    Connected = True
     LoginPrompt = False
     Left = 40
     Top = 16
@@ -22,8 +23,6 @@ object dmFBExpert: TdmFBExpert
   end
   object FDQDatabases: TFDQuery
     Connection = FDCSQLite
-    UpdateOptions.AssignedValues = [uvCheckReadOnly]
-    UpdateOptions.CheckReadOnly = False
     SQL.Strings = (
       'SELECT * FROM DATABASES')
     Left = 40

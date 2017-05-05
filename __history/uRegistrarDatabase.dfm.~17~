@@ -23,6 +23,7 @@ object frmRegistrarDatabase: TfrmRegistrarDatabase
     Align = alClient
     BevelOuter = bvNone
     TabOrder = 0
+    ExplicitHeight = 233
     object Label2: TLabel
       Left = 259
       Top = 8

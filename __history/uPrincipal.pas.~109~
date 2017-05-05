@@ -13,6 +13,7 @@ uses
 type
   TfrmPrincipal = class(TForm)
     PNLDatabases: TPanel;
+    Panel1: TPanel;
     TVDatabases: TTreeView;
     ImageList: TImageList;
     DataSource1: TDataSource;

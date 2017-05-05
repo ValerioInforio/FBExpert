@@ -2,7 +2,7 @@ object frmPrincipal: TfrmPrincipal
   Left = 0
   Top = 0
   Caption = 'FBExpert'
-  ClientHeight = 307
+  ClientHeight = 327
   ClientWidth = 875
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -19,40 +19,56 @@ object frmPrincipal: TfrmPrincipal
     Left = 0
     Top = 0
     Width = 185
-    Height = 307
+    Height = 327
     Align = alLeft
     TabOrder = 0
-    object TVDatabases: TTreeView
+    object Panel1: TPanel
       Left = 1
       Top = 1
       Width = 183
-      Height = 305
+      Height = 8
+      Align = alTop
+      BevelOuter = bvNone
+      TabOrder = 0
+      ExplicitLeft = 9
+      ExplicitTop = 2
+    end
+    object TVDatabases: TTreeView
+      Left = 1
+      Top = 9
+      Width = 183
+      Height = 317
       Align = alClient
       Images = ImageList
       Indent = 19
       PopupMenu = PopupMenu1
       ReadOnly = True
       RightClickSelect = True
-      TabOrder = 0
+      TabOrder = 1
       OnDblClick = TVDatabasesDblClick
-      ExplicitTop = 9
-      ExplicitHeight = 297
+      ExplicitLeft = 41
+      ExplicitTop = 15
     end
   end
-  object PNLPrincipal: TPanel
+  object Panel2: TPanel
     Left = 185
     Top = 0
     Width = 690
-    Height = 307
+    Height = 327
     Align = alClient
     BevelOuter = bvNone
+    Caption = 'Panel2'
     TabOrder = 1
+    ExplicitLeft = 416
+    ExplicitTop = 128
+    ExplicitWidth = 185
+    ExplicitHeight = 41
   end
   object ImageList: TImageList
     Left = 792
     Top = 16
     Bitmap = {
-      494C010101002400480010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010101002400440010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000001000000001002000000000000010
       0000000000000000000000000000000000000000000000000000FEFEFE01FEFE
       FE05FEFEFE0FFEFEFE1DFEFEFE2BFEFEFE32FEFEFE31FEFEFE27FEFEFE19FEFE

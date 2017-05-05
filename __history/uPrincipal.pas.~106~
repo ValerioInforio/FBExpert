@@ -13,6 +13,7 @@ uses
 type
   TfrmPrincipal = class(TForm)
     PNLDatabases: TPanel;
+    Panel1: TPanel;
     TVDatabases: TTreeView;
     ImageList: TImageList;
     DataSource1: TDataSource;
@@ -111,7 +112,7 @@ procedure TfrmPrincipal.estando1Click(Sender: TObject);
 begin
   Application.CreateForm(TfrmTabela, frmTabela);
   frmTabela.Parent :=  PNLPrincipal;
-  frmTabela.Show();
+  frmTabela.Show;
 end;
 
 procedure TfrmPrincipal.FormCreate(Sender: TObject);

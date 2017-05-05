@@ -2,7 +2,7 @@ object frmPrincipal: TfrmPrincipal
   Left = 0
   Top = 0
   Caption = 'FBExpert'
-  ClientHeight = 307
+  ClientHeight = 327
   ClientWidth = 875
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -19,40 +19,51 @@ object frmPrincipal: TfrmPrincipal
     Left = 0
     Top = 0
     Width = 185
-    Height = 307
+    Height = 327
     Align = alLeft
     TabOrder = 0
-    object TVDatabases: TTreeView
+    object Panel1: TPanel
       Left = 1
       Top = 1
       Width = 183
-      Height = 305
+      Height = 8
+      Align = alTop
+      BevelOuter = bvNone
+      TabOrder = 0
+    end
+    object TVDatabases: TTreeView
+      Left = 1
+      Top = 9
+      Width = 183
+      Height = 317
       Align = alClient
       Images = ImageList
       Indent = 19
       PopupMenu = PopupMenu1
       ReadOnly = True
       RightClickSelect = True
-      TabOrder = 0
+      TabOrder = 1
       OnDblClick = TVDatabasesDblClick
-      ExplicitTop = 9
-      ExplicitHeight = 297
     end
   end
-  object PNLPrincipal: TPanel
-    Left = 185
-    Top = 0
-    Width = 690
-    Height = 307
-    Align = alClient
-    BevelOuter = bvNone
+  object DBGrid1: TDBGrid
+    Left = 191
+    Top = 16
+    Width = 442
+    Height = 241
+    DataSource = DataSource1
     TabOrder = 1
+    TitleFont.Charset = DEFAULT_CHARSET
+    TitleFont.Color = clWindowText
+    TitleFont.Height = -11
+    TitleFont.Name = 'Tahoma'
+    TitleFont.Style = []
   end
   object ImageList: TImageList
     Left = 792
     Top = 16
     Bitmap = {
-      494C010101002400480010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010101002400440010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000001000000001002000000000000010
       0000000000000000000000000000000000000000000000000000FEFEFE01FEFE
       FE05FEFEFE0FFEFEFE1DFEFEFE2BFEFEFE32FEFEFE31FEFEFE27FEFEFE19FEFE
@@ -216,14 +227,6 @@ object frmPrincipal: TfrmPrincipal
         Caption = 'Register Database'
         OnClick = RegisterDatabase1Click
       end
-      object UnregisterDatabase1: TMenuItem
-        Caption = 'Unregister Database'
-        OnClick = UnregisterDatabase1Click
-      end
-      object estando1: TMenuItem
-        Caption = 'Testando'
-        OnClick = estando1Click
-      end
     end
     object View1: TMenuItem
       Caption = 'View'
@@ -239,10 +242,6 @@ object frmPrincipal: TfrmPrincipal
     object DatabaseRegistrationInfo1: TMenuItem
       Caption = 'Database Registration Info'
       OnClick = DatabaseRegistrationInfo1Click
-    end
-    object UnregisterDatabase2: TMenuItem
-      Caption = 'Unregister Database'
-      OnClick = UnregisterDatabase2Click
     end
   end
 end

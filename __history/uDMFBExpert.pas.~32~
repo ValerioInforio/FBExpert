@@ -25,7 +25,7 @@ type
     { Private declarations }
   public
     { Public declarations }
-    function GetDatabases(): TDataSet;
+    function GetDatabases: TDataSet;
     function GetDatabase(ID: Integer): TDataSet;
     procedure DeleteDatabase(ID: Integer);
   end;
@@ -62,7 +62,7 @@ begin
   Result := FDQDatabases;
 end;
 
-function TdmFBExpert.GetDatabases(): TDataSet;
+function TdmFBExpert.GetDatabases: TDataSet;
 begin
   FDQDatabases.Close();
   FDQDatabases.SQL.Text := ' SELECT * FROM DATABASES ';
