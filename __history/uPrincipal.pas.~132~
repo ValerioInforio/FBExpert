@@ -145,7 +145,7 @@ var
   MenuNode: TTreeNodeProperties;
   TableNode: TTreeNodeProperties;
 begin
-  if TTreeNodeProperties(TVDatabases.Selected).NodeType = tntDatabase then
+  if TVDatabases.Selected.Parent = nil then
      begin
       if not TVDatabases.Selected.HasChildren then
          begin

@@ -38,6 +38,7 @@ type
     procedure BTNSalvarClick(Sender: TObject);
     procedure SBFOLDERClick(Sender: TObject);
   private
+    vAlias : String;
     { Private declarations }
   public
     constructor Create(AOwner : TComponent; pID : Integer);

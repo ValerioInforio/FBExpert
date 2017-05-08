@@ -38,6 +38,7 @@ type
     procedure BTNSalvarClick(Sender: TObject);
     procedure SBFOLDERClick(Sender: TObject);
   private
+    vAlias : String;
     { Private declarations }
   public
     constructor Create(AOwner : TComponent; pID : Integer);
@@ -60,6 +61,8 @@ end;
 
 procedure TfrmRegistrarDatabase.BTNSalvarClick(Sender: TObject);
 begin
+//  if TestarCampos() then
+
   DSDatabases.DataSet.Post();
   Close();
 end;
@@ -67,6 +70,7 @@ end;
 Constructor TfrmRegistrarDatabase.Create(AOwner : TComponent; pID : Integer);
 begin
   inherited Create(AOwner);
+//  vAlias := pAlias;
   DSDatabases.DataSet := dmFBExpert.GetDatabase(pID);
   if DSDatabases.DataSet.IsEmpty then
      DSDatabases.DataSet.Append
@@ -77,8 +81,8 @@ end;
 
 procedure TfrmRegistrarDatabase.SBFOLDERClick(Sender: TObject);
 begin
-  if OpenDialog.Execute then
-     DSDatabases.DataSet.FieldByName('DATABASE').AsString := OpenDialog.FileName;
+  if OpenDialog1.Execute then
+     DSDatabases.DataSet.FieldByName('DATABASE').AsString := OpenDialog1.FileName;
 end;
 
 end.

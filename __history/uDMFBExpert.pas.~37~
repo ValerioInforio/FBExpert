@@ -80,8 +80,6 @@ begin
   FDMetaInfoQuery.Connection := Connection;
   FDMetaInfoQuery.MetaInfoKind := mkTableFields;
   FDMetaInfoQuery.Open(TableName);
-
-  Result := FDMetaInfoQuery;
 end;
 
 end.

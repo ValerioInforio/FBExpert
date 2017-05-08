@@ -20,7 +20,6 @@ type
     DSDatabases: TDataSource;
     DSPDatabases: TDataSetProvider;
     CDSDatabases: TClientDataSet;
-    FDMetaInfoQuery: TFDMetaInfoQuery;
     procedure DataModuleCreate(Sender: TObject);
   private
     { Private declarations }
@@ -28,7 +27,6 @@ type
     { Public declarations }
     function GetDatabases(): TDataSet;
     function GetDatabase(ID: Integer): TDataSet;
-    function GetTableStructure(Connection: TFDConnection; TableName: String): TDataSet;
     procedure DeleteDatabase(ID: Integer);
   end;
 
@@ -72,16 +70,6 @@ begin
   FDQDatabases.FetchAll();
 
   Result := FDQDatabases;
-end;
-
-function TdmFBExpert.GetTableStructure(Connection: TFDConnection;
-  TableName: String): TDataSet;
-begin
-  FDMetaInfoQuery.Connection := Connection;
-  FDMetaInfoQuery.MetaInfoKind := mkTableFields;
-  FDMetaInfoQuery.Open(TableName);
-
-  Result := FDMetaInfoQuery;
 end;
 
 end.

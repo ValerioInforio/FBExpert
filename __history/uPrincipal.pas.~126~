@@ -11,11 +11,9 @@ uses
   System.ImageList, Vcl.ImgList, Vcl.Grids, Vcl.DBGrids, Vcl.Menus;
 
 type
-  TNodeType = (tntDatabase, tntTable);
-
   TTreeNodeProperties = class(TTreeNode)
   public
-    NodeType : TNodeType;
+    NodeType : Integer;
     NodeName : String;
   end;
   TfrmPrincipal = class(TForm)
@@ -64,7 +62,7 @@ uses uDMFBExpert, uRegistrarDatabase, uTabela;
 procedure TfrmPrincipal.CarregarDatabases();
 var
   DSDatabases: TDataSet;
-  DatabaseNode: TTreeNodeProperties;
+  DatabaseNode: TTreeNode;
   FDConnection: TFDConnection;
 begin
   DSDatabases := dmFBExpert.GetDatabases();
@@ -78,8 +76,7 @@ begin
 
       while not(DSDatabases.Eof) do
         begin
-          DatabaseNode := (TTreeNodeProperties (TVDatabases.Items.AddChild(nil, DSDatabases.FieldByName('ALIAS').AsString)));
-          DatabaseNode.NodeType := tntDatabase;
+          DatabaseNode := TVDatabases.Items.AddChild(nil, DSDatabases.FieldByName('ALIAS').AsString);
 
           FDConnection := TFDConnection.Create(Self);
           FDConnection.DriverName := DSDatabases.FieldByName('DRIVER_ID').AsString;
@@ -145,7 +142,7 @@ var
   MenuNode: TTreeNodeProperties;
   TableNode: TTreeNodeProperties;
 begin
-  if TTreeNodeProperties(TVDatabases.Selected).NodeType = tntDatabase then
+  if TVDatabases.Selected.Parent = nil then
      begin
       if not TVDatabases.Selected.HasChildren then
          begin
@@ -157,14 +154,11 @@ begin
            for I := 0 to (Tables.Count - 1) do
              begin
                TableNode := (TTreeNodeProperties (TVDatabases.Items.addChild(MenuNode, Tables[i])));
-               TableNode.NodeType := tntTable;
-               TableNode.NodeName := Tables[i];
                TableNode.ImageIndex := 1;
              end;
          end;
      end;
-  if TTreeNodeProperties(TVDatabases.Selected).NodeType = tntTable then
-     ShowMessage('Deu');
+//  if TVDatabases.Selected.GetPrev = nil then
 end;
 
 procedure TfrmPrincipal.UnregisterDatabase1Click(Sender: TObject);

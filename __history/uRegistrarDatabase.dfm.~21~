@@ -190,7 +190,7 @@ object frmRegistrarDatabase: TfrmRegistrarDatabase
     Left = 344
     Top = 184
   end
-  object OpenDialog: TOpenDialog
+  object OpenDialog1: TOpenDialog
     Left = 416
     Top = 184
   end

@@ -2,7 +2,7 @@ object frmPrincipal: TfrmPrincipal
   Left = 0
   Top = 0
   Caption = 'FBExpert'
-  ClientHeight = 267
+  ClientHeight = 287
   ClientWidth = 875
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -19,14 +19,14 @@ object frmPrincipal: TfrmPrincipal
     Left = 0
     Top = 0
     Width = 185
-    Height = 267
+    Height = 287
     Align = alLeft
     TabOrder = 0
     object TVDatabases: TTreeView
       Left = 1
       Top = 1
       Width = 183
-      Height = 265
+      Height = 285
       Align = alClient
       Images = ImageList
       Indent = 19
@@ -35,15 +35,13 @@ object frmPrincipal: TfrmPrincipal
       RightClickSelect = True
       TabOrder = 0
       OnDblClick = TVDatabasesDblClick
-      ExplicitLeft = -4
-      ExplicitTop = 0
     end
   end
   object PNLPrincipal: TPanel
     Left = 185
     Top = 0
     Width = 690
-    Height = 267
+    Height = 287
     Align = alClient
     BevelOuter = bvNone
     TabOrder = 1
@@ -52,7 +50,7 @@ object frmPrincipal: TfrmPrincipal
     Left = 792
     Top = 16
     Bitmap = {
-      494C010101002400500010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C0101010024004C0010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000001000000001002000000000000010
       0000000000000000000000000000000000000000000000000000FEFEFE01FEFE
       FE05FEFEFE0FFEFEFE1DFEFEFE2BFEFEFE32FEFEFE31FEFEFE27FEFEFE19FEFE
@@ -234,8 +232,8 @@ object frmPrincipal: TfrmPrincipal
     end
   end
   object PopupMenu1: TPopupMenu
-    Left = 616
-    Top = 192
+    Left = 632
+    Top = 232
     object DatabaseRegistrationInfo1: TMenuItem
       Caption = 'Database Registration Info'
       OnClick = DatabaseRegistrationInfo1Click

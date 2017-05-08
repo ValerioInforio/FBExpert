@@ -87,13 +87,6 @@ object frmRegistrarDatabase: TfrmRegistrarDatabase
       Caption = 'Driver ID'
       FocusControl = DBEDRIVER_ID
     end
-    object SBFOLDER: TSpeedButton
-      Left = 357
-      Top = 68
-      Width = 23
-      Height = 23
-      OnClick = SBFOLDERClick
-    end
     object DBEPROTOCOL: TDBEdit
       Left = 259
       Top = 24
@@ -124,7 +117,7 @@ object frmRegistrarDatabase: TfrmRegistrarDatabase
     object DBEDATABASE: TDBEdit
       Left = 16
       Top = 69
-      Width = 340
+      Width = 357
       Height = 21
       DataField = 'DATABASE'
       DataSource = DSDatabases
@@ -187,11 +180,7 @@ object frmRegistrarDatabase: TfrmRegistrarDatabase
     end
   end
   object DSDatabases: TDataSource
-    Left = 344
-    Top = 184
-  end
-  object OpenDialog: TOpenDialog
-    Left = 416
-    Top = 184
+    Left = 368
+    Top = 112
   end
 end

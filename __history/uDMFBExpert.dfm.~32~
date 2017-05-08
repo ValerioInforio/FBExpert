@@ -40,14 +40,11 @@ object dmFBExpert: TdmFBExpert
     Top = 144
   end
   object CDSDatabases: TClientDataSet
+    Active = True
     Aggregates = <>
     Params = <>
     ProviderName = 'DSPDatabases'
     Left = 40
     Top = 198
-  end
-  object FDMetaInfoQuery: TFDMetaInfoQuery
-    Left = 216
-    Top = 256
   end
 end

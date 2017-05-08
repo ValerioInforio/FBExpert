@@ -1,0 +1,7 @@
+http://docwiki.embarcadero.com/RADStudio/Tokyo/en/Working_with_Metadata_(FireDAC)
+
+http://docwiki.embarcadero.com/RADStudio/Tokyo/en/Metadata_Structure_(FireDAC)
+
+http://docwiki.embarcadero.com/Libraries/Tokyo/en/FireDAC.Comp.Client.TFDMetaInfoQuery
+
+http://docwiki.embarcadero.com/Libraries/Tokyo/en/FireDAC.Comp.Client.TFDMetaInfoQuery.TableKinds

@@ -64,7 +64,7 @@ uses uDMFBExpert, uRegistrarDatabase, uTabela;
 procedure TfrmPrincipal.CarregarDatabases();
 var
   DSDatabases: TDataSet;
-  DatabaseNode: TTreeNodeProperties;
+  DatabaseNode: TTreeNode;
   FDConnection: TFDConnection;
 begin
   DSDatabases := dmFBExpert.GetDatabases();
@@ -78,8 +78,7 @@ begin
 
       while not(DSDatabases.Eof) do
         begin
-          DatabaseNode := (TTreeNodeProperties (TVDatabases.Items.AddChild(nil, DSDatabases.FieldByName('ALIAS').AsString)));
-          DatabaseNode.NodeType := tntDatabase;
+          DatabaseNode := TVDatabases.Items.AddChild(nil, DSDatabases.FieldByName('ALIAS').AsString);
 
           FDConnection := TFDConnection.Create(Self);
           FDConnection.DriverName := DSDatabases.FieldByName('DRIVER_ID').AsString;
@@ -145,7 +144,7 @@ var
   MenuNode: TTreeNodeProperties;
   TableNode: TTreeNodeProperties;
 begin
-  if TTreeNodeProperties(TVDatabases.Selected).NodeType = tntDatabase then
+  if TVDatabases.Selected.Parent = nil then
      begin
       if not TVDatabases.Selected.HasChildren then
          begin
@@ -163,8 +162,7 @@ begin
              end;
          end;
      end;
-  if TTreeNodeProperties(TVDatabases.Selected).NodeType = tntTable then
-     ShowMessage('Deu');
+//  if TVDatabases.Selected.GetPrev = nil then
 end;
 
 procedure TfrmPrincipal.UnregisterDatabase1Click(Sender: TObject);
