@@ -63,7 +63,8 @@ object frmPrincipal: TfrmPrincipal
     Height = 31
     Align = alBottom
     TabOrder = 2
-    ExplicitTop = 324
+    ExplicitTop = 305
+    ExplicitWidth = 696
   end
   object ImageList: TImageList
     Masked = False

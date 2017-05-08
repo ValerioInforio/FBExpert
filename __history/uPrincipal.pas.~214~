@@ -8,7 +8,7 @@ uses
   FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf,
   FireDAC.DApt.Intf, Data.DB, FireDAC.Comp.DataSet, FireDAC.Comp.Client,
   FireDAC.Stan.Async, FireDAC.DApt, Vcl.ExtCtrls, Vcl.ComCtrls, System.Generics.Collections,
-  System.ImageList, Vcl.ImgList, Vcl.Grids, Vcl.DBGrids, Vcl.Menus, Vcl.StdCtrls;
+  System.ImageList, Vcl.ImgList, Vcl.Grids, Vcl.DBGrids, Vcl.Menus;
 
 type
   TNodeType = (tntNone, tntDatabase, tntTable);
@@ -37,7 +37,7 @@ type
     UnregisterDatabase1: TMenuItem;
     UnregisterDatabase2: TMenuItem;
     PNLPrincipal: TPanel;
-    PNLStatusBar: TPanel;
+    PNLSideBar: TPanel;
     procedure FormCreate(Sender: TObject);
     procedure TVDatabasesDblClick(Sender: TObject);
     procedure DBExplorer1Click(Sender: TObject);
@@ -143,7 +143,6 @@ end;
 
 procedure TfrmPrincipal.TVDatabasesDblClick(Sender: TObject);
 var
-  BTNDinamic : TButton;
   I: Integer;
   J: Integer;
   Tables: TStringList;
@@ -179,13 +178,6 @@ begin
                                       (TVDatabases.Selected as TTreeNodeProperties).NodeName);
        frmTabela.Parent := PNLPrincipal;
        frmTabela.Show();
-
-
-       BTNDinamic         := TButton.Create(Self);
-       BTNDinamic.Name    := 'BTN' + (TVDatabases.Selected as TTreeNodeProperties).NodeName;
-       BTNDinamic.Caption := (TVDatabases.Selected as TTreeNodeProperties).NodeName;
-       BTNDinamic.Parent  := PNLStatusBar;
-       BTNDinamic.SetBounds(0, 0, 80, PNLStatusBar.ClientHeight);
      end;
 end;
 

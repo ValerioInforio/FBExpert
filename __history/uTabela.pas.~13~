@@ -10,7 +10,7 @@ uses
 type
   TfrmTabela = class(TForm)
     PCLPrincipal: TPageControl;
-    TSFields: TTabSheet;
+    TabSheet1: TTabSheet;
     DBGrid1: TDBGrid;
     DSTableStructure: TDataSource;
   private

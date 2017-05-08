@@ -2,7 +2,7 @@ object frmPrincipal: TfrmPrincipal
   Left = 0
   Top = 0
   Caption = 'FBExpert'
-  ClientHeight = 350
+  ClientHeight = 241
   ClientWidth = 881
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -21,7 +21,7 @@ object frmPrincipal: TfrmPrincipal
     Left = 0
     Top = 0
     Width = 185
-    Height = 319
+    Height = 241
     Align = alLeft
     TabOrder = 0
     ExplicitHeight = 227
@@ -29,7 +29,7 @@ object frmPrincipal: TfrmPrincipal
       Left = 1
       Top = 1
       Width = 183
-      Height = 317
+      Height = 239
       Align = alClient
       Images = ImageList
       Indent = 19
@@ -42,31 +42,20 @@ object frmPrincipal: TfrmPrincipal
       OnDblClick = TVDatabasesDblClick
       ExplicitLeft = -4
       ExplicitTop = 2
-      ExplicitHeight = 239
     end
   end
   object PNLPrincipal: TPanel
     Left = 185
     Top = 0
     Width = 696
-    Height = 319
+    Height = 241
     Align = alClient
     BevelOuter = bvNone
     TabOrder = 1
     ExplicitWidth = 690
     ExplicitHeight = 227
   end
-  object PNLStatusBar: TPanel
-    Left = 0
-    Top = 319
-    Width = 881
-    Height = 31
-    Align = alBottom
-    TabOrder = 2
-    ExplicitTop = 324
-  end
   object ImageList: TImageList
-    Masked = False
     Left = 792
     Top = 16
     Bitmap = {

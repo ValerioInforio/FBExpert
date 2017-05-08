@@ -181,11 +181,10 @@ begin
        frmTabela.Show();
 
 
-       BTNDinamic         := TButton.Create(Self);
-       BTNDinamic.Name    := 'BTN' + (TVDatabases.Selected as TTreeNodeProperties).NodeName;
-       BTNDinamic.Caption := (TVDatabases.Selected as TTreeNodeProperties).NodeName;
-       BTNDinamic.Parent  := PNLStatusBar;
-       BTNDinamic.SetBounds(0, 0, 80, PNLStatusBar.ClientHeight);
+       BTNDinamic        := TButton.Create(Self);
+       BTNDinamic.Name   := (TVDatabases.Selected as TTreeNodeProperties).NodeName;
+       BTNDinamic.Parent := PNLStatusBar;
+       BTNDinamic.SetBounds(0, 0, 100, PNLStatusBar.ClientHeight);
      end;
 end;
 

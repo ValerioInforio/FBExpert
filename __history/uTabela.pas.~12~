@@ -10,7 +10,7 @@ uses
 type
   TfrmTabela = class(TForm)
     PCLPrincipal: TPageControl;
-    TSFields: TTabSheet;
+    TabSheet1: TTabSheet;
     DBGrid1: TDBGrid;
     DSTableStructure: TDataSource;
   private
@@ -35,6 +35,7 @@ constructor TfrmTabela.Create(AOwner: TComponent; Connection: TFDConnection; Tab
 begin
   inherited Create(AOwner);
   Caption := TableName;
+
   DSTableStructure.DataSet := dmFBExpert.GetTableStructure(Connection, TableName);
 end;
 

@@ -13,6 +13,7 @@ type
     TSFields: TTabSheet;
     DBGrid1: TDBGrid;
     DSTableStructure: TDataSource;
+    procedure FormShow(Sender: TObject);
   private
     { Private declarations }
   public
@@ -36,6 +37,11 @@ begin
   inherited Create(AOwner);
   Caption := TableName;
   DSTableStructure.DataSet := dmFBExpert.GetTableStructure(Connection, TableName);
+end;
+
+procedure TfrmTabela.FormShow(Sender: TObject);
+begin
+  WindowState := wsMaximized;
 end;
 
 end.

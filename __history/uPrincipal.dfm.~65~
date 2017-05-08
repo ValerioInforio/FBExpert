@@ -56,14 +56,15 @@ object frmPrincipal: TfrmPrincipal
     ExplicitWidth = 690
     ExplicitHeight = 227
   end
-  object PNLStatusBar: TPanel
+  object PNLSideBar: TPanel
     Left = 0
     Top = 319
     Width = 881
     Height = 31
     Align = alBottom
     TabOrder = 2
-    ExplicitTop = 324
+    ExplicitTop = 305
+    ExplicitWidth = 696
   end
   object ImageList: TImageList
     Masked = False

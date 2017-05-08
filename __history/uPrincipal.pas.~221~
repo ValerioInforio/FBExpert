@@ -185,7 +185,7 @@ begin
        BTNDinamic.Name    := 'BTN' + (TVDatabases.Selected as TTreeNodeProperties).NodeName;
        BTNDinamic.Caption := (TVDatabases.Selected as TTreeNodeProperties).NodeName;
        BTNDinamic.Parent  := PNLStatusBar;
-       BTNDinamic.SetBounds(0, 0, 80, PNLStatusBar.ClientHeight);
+       BTNDinamic.SetBounds(0, 0, 50, PNLStatusBar.ClientHeight);
      end;
 end;
 

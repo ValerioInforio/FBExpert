@@ -79,8 +79,7 @@ function TdmFBExpert.GetTableStructure(Connection: TFDConnection;
 begin
   FDMetaInfoQuery.Connection := Connection;
   FDMetaInfoQuery.MetaInfoKind := mkTableFields;
-  FDMetaInfoQuery.ObjectName := TableName;
-  FDMetaInfoQuery.Open();
+  FDMetaInfoQuery.Open(TableName);
   {Set the Connection,
            MetaInfoKind and
            optionally the CatalogName,
