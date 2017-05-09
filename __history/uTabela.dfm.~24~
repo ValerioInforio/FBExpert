@@ -46,14 +46,7 @@ object frmTabela: TfrmTabela
     end
   end
   object DSTableStructure: TDataSource
-    DataSet = CDSTableStructure
     Left = 424
-    Top = 200
-  end
-  object CDSTableStructure: TClientDataSet
-    Aggregates = <>
-    Params = <>
-    Left = 304
     Top = 200
   end
 end

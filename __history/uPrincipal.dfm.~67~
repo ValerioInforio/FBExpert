@@ -24,6 +24,7 @@ object frmPrincipal: TfrmPrincipal
     Height = 319
     Align = alLeft
     TabOrder = 0
+    ExplicitHeight = 227
     object TVDatabases: TTreeView
       Left = 1
       Top = 1
@@ -39,6 +40,9 @@ object frmPrincipal: TfrmPrincipal
       TabOrder = 0
       OnCreateNodeClass = TVDatabasesCreateNodeClass
       OnDblClick = TVDatabasesDblClick
+      ExplicitLeft = -4
+      ExplicitTop = 2
+      ExplicitHeight = 239
     end
   end
   object PNLPrincipal: TPanel
@@ -49,6 +53,8 @@ object frmPrincipal: TfrmPrincipal
     Align = alClient
     BevelOuter = bvNone
     TabOrder = 1
+    ExplicitWidth = 690
+    ExplicitHeight = 227
   end
   object PNLStatusBar: TPanel
     Left = 0
@@ -56,15 +62,15 @@ object frmPrincipal: TfrmPrincipal
     Width = 881
     Height = 31
     Align = alBottom
-    Alignment = taLeftJustify
     TabOrder = 2
+    ExplicitTop = 324
   end
   object ImageList: TImageList
     Masked = False
     Left = 792
     Top = 16
     Bitmap = {
-      494C010102002400700010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010102002400680010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000001000000001002000000000000010
       0000000000000000000000000000000000000000000000000000FEFEFE01FEFE
       FE05FEFEFE0FFEFEFE1DFEFEFE2BFEFEFE32FEFEFE31FEFEFE27FEFEFE19FEFE

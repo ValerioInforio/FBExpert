@@ -13,7 +13,6 @@ type
     TSFields: TTabSheet;
     DBGrid1: TDBGrid;
     DSTableStructure: TDataSource;
-    CDSTableStructure: TClientDataSet;
   private
     { Private declarations }
   public
@@ -36,7 +35,8 @@ constructor TfrmTabela.Create(AOwner: TComponent; Connection: TFDConnection; Tab
 begin
   inherited Create(AOwner);
   Caption := TableName;
-  DSTableStructure.DataSet := dmFBExpert.GetTableStructure(Connection, TableName);
+  (DSTableStructure.DataSet as TClientDataSet).Data :=
+      (dmFBExpert.GetTableStructure(Connection, TableName) as TClientDataSet).Data;
 end;
 
 end.

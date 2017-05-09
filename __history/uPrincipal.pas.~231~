@@ -50,6 +50,7 @@ type
     procedure FormShow(Sender: TObject);
   private
     { Private declarations }
+    Method : TMethod;
     ListFDConnection: TObjectList<TFDConnection>;
     ListIDDatabases : TList<Integer>;
     procedure ClickButton(Sender: TObject);
@@ -106,17 +107,9 @@ begin
 end;
 
 procedure TfrmPrincipal.ClickButton(Sender: TObject);
-var
-  NomeFormulario: String;
-  Formulario: TForm;
 begin
-  NomeFormulario := 'frmTB' + (Sender as TButton).Caption;
-  Formulario := (Application.FindComponent(NomeFormulario) as TForm);
-  if Assigned(Formulario) then
-     begin
-       Formulario.Show;
-//       Formulario.BringToFront;
-     end;
+//  (('frmTB' + (Sender as TButton).Caption) as TForm).Show;
+  (FindComponent('frmTB' + (Sender as TButton).Caption) as TForm).Show;
 end;
 
 procedure TfrmPrincipal.DatabaseRegistrationInfo1Click(Sender: TObject);
@@ -160,7 +153,7 @@ procedure TfrmPrincipal.TVDatabasesDblClick(Sender: TObject);
 var
   BTNDinamic : TButton;
   I: Integer;
-//  J: Integer;
+  J: Integer;
   Tables: TStringList;
   MenuNode: TTreeNodeProperties;
   TableNode: TTreeNodeProperties;

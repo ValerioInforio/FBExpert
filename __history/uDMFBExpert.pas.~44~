@@ -28,7 +28,7 @@ type
     { Public declarations }
     function GetDatabases(): TDataSet;
     function GetDatabase(ID: Integer): TDataSet;
-    function GetTableStructure(Connection: TFDConnection; TableName: String): TDataSet;
+    function GetTableStructure(Connection: TFDConnection; TableName: String): OleVariant;
     procedure DeleteDatabase(ID: Integer);
   end;
 
@@ -75,7 +75,7 @@ begin
 end;
 
 function TdmFBExpert.GetTableStructure(Connection: TFDConnection;
-  TableName: String): TDataSet;
+  TableName: String): OleVariant;
 begin
   FDMetaInfoQuery.Connection := Connection;
   FDMetaInfoQuery.MetaInfoKind := mkTableFields;
@@ -89,7 +89,7 @@ begin
                           SchemaName,
                           BaseObjectName,
                           and ObjectName properties and open the dataset.}
-  Result := FDMetaInfoQuery;
+  Result := FDMetaInfoQuery.Data;
 end;
 
 end.

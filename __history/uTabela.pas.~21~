@@ -36,7 +36,7 @@ constructor TfrmTabela.Create(AOwner: TComponent; Connection: TFDConnection; Tab
 begin
   inherited Create(AOwner);
   Caption := TableName;
-  DSTableStructure.DataSet := dmFBExpert.GetTableStructure(Connection, TableName);
+  CDSTableStructure := dmFBExpert.GetTableStructure(Connection, TableName);
 end;
 
 end.

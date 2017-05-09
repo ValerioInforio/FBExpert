@@ -81,8 +81,6 @@ begin
   FDMetaInfoQuery.MetaInfoKind := mkTableFields;
   FDMetaInfoQuery.ObjectName := TableName;
   FDMetaInfoQuery.Open();
-  FDMetaInfoQuery.FetchAll();
-  FDMetaInfoQuery.Offline();
   {Set the Connection,
            MetaInfoKind and
            optionally the CatalogName,
