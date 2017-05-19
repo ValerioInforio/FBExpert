@@ -258,7 +258,6 @@ object frmPrincipal: TfrmPrincipal
     Top = 248
     object Close: TMenuItem
       Caption = 'Close'
-      OnClick = CloseClick
     end
     object CloseAll: TMenuItem
       Caption = 'Close All'

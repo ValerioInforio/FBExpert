@@ -253,18 +253,4 @@ object frmPrincipal: TfrmPrincipal
       OnClick = UnregisterDatabase2Click
     end
   end
-  object PPMNBUTTON: TPopupMenu
-    Left = 616
-    Top = 248
-    object Close: TMenuItem
-      Caption = 'Close'
-      OnClick = CloseClick
-    end
-    object CloseAll: TMenuItem
-      Caption = 'Close All'
-    end
-    object Closeallexceptthis: TMenuItem
-      Caption = 'Close all except this'
-    end
-  end
 end

@@ -32,6 +32,7 @@ type
     procedure FDMetaInfoQueryCalcFields(DataSet: TDataSet);
     procedure DBGrid1DrawColumnCell(Sender: TObject; const Rect: TRect;
       DataCol: Integer; Column: TColumn; State: TGridDrawState);
+    procedure DBGrid1CellClick(Column: TColumn);
   private
     function GetTableStructure(Connection: TFDConnection; TableName: String): TDataSet;
     { Private declarations }
@@ -57,6 +58,16 @@ begin
   Caption := TableName;
   GetTableStructure(Connection, TableName);
 //  DSTableStructure.DataSet := dmFBExpert.GetTableStructure(Connection, TableName);
+end;
+
+procedure TfrmTabela.DBGrid1CellClick(Column: TColumn);
+begin
+  if Column.FieldName = 'NOT_NULL' then
+     begin
+  FDMetaInfoQuery.Edit;
+  FDMetaInfoQuery.FieldByName('NOT_NULL').AsString := '';
+  FDMetaInfoQuery.Post;
+     end;
 end;
 
 procedure TfrmTabela.DBGrid1DrawColumnCell(Sender: TObject; const Rect: TRect;

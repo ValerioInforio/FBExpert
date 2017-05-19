@@ -218,6 +218,7 @@ begin
 
            MenuNode := TVDatabases.Items.addChild(TVDatabases.Selected, 'Tables (' + Tables.Count.ToString() + ')') as TTreeNodeProperties;
            MenuNode.ImageIndex := 0;
+//           MenuNode.StateIndex := 0;
            for I := 0 to (Tables.Count - 1) do
              begin
                TableNode := TVDatabases.Items.addChild(MenuNode, Tables[i]) as TTreeNodeProperties;

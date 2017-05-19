@@ -169,7 +169,7 @@ var
   BTNDinamic: TButton;
 begin
   NomeBotao := Tabela;
-  BTNDinamic := (FindComponent(NomeBotao) as TButton);
+  BTNDinamic := (Application.FindComponent(NomeBotao) as TButton);
 
   Result := BTNDinamic;
 end;
@@ -218,6 +218,7 @@ begin
 
            MenuNode := TVDatabases.Items.addChild(TVDatabases.Selected, 'Tables (' + Tables.Count.ToString() + ')') as TTreeNodeProperties;
            MenuNode.ImageIndex := 0;
+//           MenuNode.StateIndex := 0;
            for I := 0 to (Tables.Count - 1) do
              begin
                TableNode := TVDatabases.Items.addChild(MenuNode, Tables[i]) as TTreeNodeProperties;

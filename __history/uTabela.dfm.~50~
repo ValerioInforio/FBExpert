@@ -69,34 +69,32 @@ object frmTabela: TfrmTabela
             Visible = True
           end
           item
+            Alignment = taLeftJustify
             Expanded = False
             FieldName = 'COLUMN_PRECISION'
-            Title.Alignment = taRightJustify
             Title.Caption = 'Size'
             Width = 32
             Visible = True
           end
           item
+            Alignment = taLeftJustify
             Expanded = False
             FieldName = 'COLUMN_SCALE'
-            Title.Alignment = taRightJustify
             Title.Caption = 'Scale'
             Width = 32
             Visible = True
           end
           item
+            Alignment = taLeftJustify
             Expanded = False
             FieldName = 'COLUMN_LENGTH'
-            Title.Alignment = taRightJustify
             Title.Caption = 'Length'
             Width = 40
             Visible = True
           end
           item
-            Alignment = taCenter
             Expanded = False
             FieldName = 'NOT_NULL'
-            Title.Alignment = taCenter
             Title.Caption = 'Not Null'
             Visible = True
           end

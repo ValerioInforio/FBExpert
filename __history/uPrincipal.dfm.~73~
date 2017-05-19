@@ -32,7 +32,7 @@ object frmPrincipal: TfrmPrincipal
       Align = alClient
       Images = ImageList
       Indent = 19
-      PopupMenu = PPMNDATABASES
+      PopupMenu = POPMENUDATABASES
       ReadOnly = True
       RightClickSelect = True
       StateImages = ImageList
@@ -241,7 +241,7 @@ object frmPrincipal: TfrmPrincipal
       end
     end
   end
-  object PPMNDATABASES: TPopupMenu
+  object POPMENUDATABASES: TPopupMenu
     Left = 616
     Top = 192
     object DatabaseRegistrationInfo1: TMenuItem
@@ -251,20 +251,6 @@ object frmPrincipal: TfrmPrincipal
     object UnregisterDatabase2: TMenuItem
       Caption = 'Unregister Database'
       OnClick = UnregisterDatabase2Click
-    end
-  end
-  object PPMNBUTTON: TPopupMenu
-    Left = 616
-    Top = 248
-    object Close: TMenuItem
-      Caption = 'Close'
-      OnClick = CloseClick
-    end
-    object CloseAll: TMenuItem
-      Caption = 'Close All'
-    end
-    object Closeallexceptthis: TMenuItem
-      Caption = 'Close all except this'
     end
   end
 end
