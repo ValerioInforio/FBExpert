@@ -104,11 +104,10 @@ object frmTabela: TfrmTabela
             Visible = True
           end
           item
-            Alignment = taCenter
             Expanded = False
             FieldName = 'PK'
             Title.Alignment = taCenter
-            Width = 18
+            Width = 25
             Visible = True
           end
           item
@@ -243,10 +242,9 @@ object frmTabela: TfrmTabela
       FieldName = 'NOT_NULL'
       Calculated = True
     end
-    object FDMetaInfoQueryPK: TStringField
+    object FDMetaInfoQueryPK: TBooleanField
       FieldKind = fkCalculated
       FieldName = 'PK'
-      Size = 1
       Calculated = True
     end
   end

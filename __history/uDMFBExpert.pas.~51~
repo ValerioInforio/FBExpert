@@ -21,15 +21,17 @@ type
     DSPDatabases: TDataSetProvider;
     CDSDatabases: TClientDataSet;
     FDMetaInfoQuery: TFDMetaInfoQuery;
+    FDQGeneric: TFDQuery;
     procedure DataModuleCreate(Sender: TObject);
   private
     { Private declarations }
   public
     { Public declarations }
-    function GetDatabases(): TDataSet;
-    function GetDatabase(ID: Integer): TDataSet;
-    function GetTableStructure(Connection: TFDConnection; TableName: String): TDataSet;
+    function  GetDatabases(): TDataSet;
+    function  GetDatabase(ID: Integer): TDataSet;
+    function  GetTableStructure(Connection: TFDConnection; TableName: String): TDataSet;
     procedure DeleteDatabase(ID: Integer);
+    function  ReadFieldAttributes(Connection: TFDConnection; TableName, FieldName: String): TDataSet;
   end;
 
 var
@@ -79,9 +81,35 @@ function TdmFBExpert.GetTableStructure(Connection: TFDConnection;
 begin
   FDMetaInfoQuery.Connection := Connection;
   FDMetaInfoQuery.MetaInfoKind := mkTableFields;
-  FDMetaInfoQuery.Open(TableName);
-
+  FDMetaInfoQuery.ObjectName := TableName;
+  FDMetaInfoQuery.Open();
+  FDMetaInfoQuery.FetchAll();
+  FDMetaInfoQuery.Offline();
+  {Set the Connection,
+           MetaInfoKind and
+           optionally the CatalogName,
+                          SchemaName,
+                          BaseObjectName,
+                          and ObjectName properties and open the dataset.}
   Result := FDMetaInfoQuery;
+end;
+
+function TdmFBExpert.ReadFieldAttributes(Connection: TFDConnection; TableName,
+  FieldName: String): TDataSet;
+begin
+  FDQGeneric.Connection := Connection;
+
+  FDQGeneric.Close();
+  FDQGeneric.SQL.Text := ' SELECT RDB$RELATION_FIELDS.RDB$FIELD_SOURCE AS DOMINIO, ' +
+                         '        RDB$FIELDS.RDB$NULL_FLAG AS NAO_NULO ' +
+                         '   FROM RDB$RELATION_FIELDS ' +
+                         '  INNER JOIN RDB$FIELDS ON (RDB$FIELDS.RDB$FIELD_NAME = RDB$RELATION_FIELDS.RDB$FIELD_SOURCE) ' +
+                         '  WHERE RDB$RELATION_FIELDS.RDB$RELATION_NAME = ' + TableName.QuotedString() +
+                         '    AND RDB$RELATION_FIELDS.RDB$FIELD_NAME = ' + FieldName.QuotedString();
+  FDQGeneric.Open();
+  FDQGeneric.FetchAll();
+
+  Result := FDQGeneric;
 end;
 
 end.

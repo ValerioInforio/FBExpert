@@ -7,7 +7,8 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ComCtrls, Data.DB, Vcl.Grids, FireDAC.Comp.Client,
   Vcl.DBGrids, Datasnap.DBClient, FireDAC.Stan.Intf, FireDAC.Stan.Option,
   FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf,
-  FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt, FireDAC.Comp.DataSet;
+  FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt, FireDAC.Comp.DataSet,
+  Vcl.ExtCtrls, Vcl.Imaging.pngimage, System.ImageList, Vcl.ImgList;
 
 type
   TfrmTabela = class(TForm)
@@ -28,12 +29,17 @@ type
     FDMetaInfoQueryCOLUMN_PRECISION: TIntegerField;
     FDMetaInfoQueryCOLUMN_SCALE: TIntegerField;
     FDMetaInfoQueryCOLUMN_LENGTH: TIntegerField;
-    FDMetaInfoQueryNOT_NULL: TStringField;
+    FDMetaInfoQueryDOMAIN: TStringField;
+    FDMetaInfoQueryNOT_NULL: TIntegerField;
+    Image1: TImage;
+    ImageList1: TImageList;
+    FDMetaInfoQueryPK: TIntegerField;
     procedure FDMetaInfoQueryCalcFields(DataSet: TDataSet);
     procedure DBGrid1DrawColumnCell(Sender: TObject; const Rect: TRect;
       DataCol: Integer; Column: TColumn; State: TGridDrawState);
-    procedure DBGrid1CellClick(Column: TColumn);
   private
+    CurrentConnection: TFDConnection;
+    CurrentTableName: String;
     function GetTableStructure(Connection: TFDConnection; TableName: String): TDataSet;
     { Private declarations }
   public
@@ -55,17 +61,13 @@ uses uDMFBExpert;
 constructor TfrmTabela.Create(AOwner: TComponent; Connection: TFDConnection; TableName: String);
 begin
   inherited Create(AOwner);
-  Caption := TableName;
-  GetTableStructure(Connection, TableName);
-//  DSTableStructure.DataSet := dmFBExpert.GetTableStructure(Connection, TableName);
-end;
 
-procedure TfrmTabela.DBGrid1CellClick(Column: TColumn);
-begin
-  if Column.FieldName = 'NOT_NULL' then
-     begin
-       FDMetaInfoQuery.FieldByName('NOT_NULL').AsString := '';
-     end;
+  CurrentConnection := Connection;
+  CurrentTableName  := TableName;
+
+  Caption := TableName;
+  GetTableStructure(CurrentConnection, CurrentTableName);
+//  DSTableStructure.DataSet := dmFBExpert.GetTableStructure(Connection, TableName);
 end;
 
 procedure TfrmTabela.DBGrid1DrawColumnCell(Sender: TObject; const Rect: TRect;
@@ -78,28 +80,37 @@ begin
      begin
        DBGrid1.Canvas.FillRect(Rect);
        Check := 0;
-       if FDMetaInfoQuery.FieldByName('NOT_NULL').AsString.Equals('S') then
+       if FDMetaInfoQuery.FieldByName('NOT_NULL').AsInteger = 1 then
           Check := DFCS_CHECKED;
        R:=Rect;
        InflateRect(R,-2,-2); //Diminue o tamanho do CheckBox
        DrawFrameControl(DBGrid1.Canvas.Handle,R,DFC_BUTTON, DFCS_BUTTONCHECK or Check);
      end;
+
+  if Column.FieldName = 'PK' then
+     begin
+       DBGrid1.Canvas.FillRect(Rect);
+       R:=Rect;
+       InflateRect(R,-2,-2); //Diminue o tamanho do CheckBox
+       if FDMetaInfoQuery.FieldByName('PK').AsInteger = 1 then
+//          Canvas.Draw(R.Left, R.Top, ImageList1.draw);
+          ImageList1.Draw(TDBGrid(Sender).Canvas, Rect.Left + (Rect.Width div 2) - 7,Rect.Top + 1, 0);
+     end;
 end;
 
 procedure TfrmTabela.FDMetaInfoQueryCalcFields(DataSet: TDataSet);
 var
-  i : Integer;
-  eAttrs: TFDDataAttributes;
-  X: String;
+  MyDataSet : TDataSet;
 begin
-  i := FDMetaInfoQuery.FieldByName('COLUMN_ATTRIBUTES').AsInteger;
-  eAttrs := TFDDataAttributes(Pointer(@i)^);
-
-  if not(caAllowNull in eAttrs) then
-     X := 'S'
-  else
-     X := 'N';
-  FDMetaInfoQueryNOT_NULL.Value := X;
+  MyDataSet := dmFBExpert.ReadFieldAttributes(CurrentConnection,
+                                              CurrentTableName,
+                                              FDMetaInfoQuery.FieldByName('COLUMN_NAME').AsString);
+  if not MyDataSet.IsEmpty then
+     begin
+       FDMetaInfoQueryNOT_NULL.Value := MyDataSet.FieldByName('NAO_NULO').AsInteger;
+       FDMetaInfoQueryDOMAIN.Value   := MyDataSet.FieldByName('DOMINIO').AsString;
+       FDMetaInfoQueryPK.Value       := MyDataSet.FieldByName('PK').AsInteger;
+     end;
 end;
 
 function TfrmTabela.GetTableStructure(Connection: TFDConnection; TableName: String): TDataSet;
@@ -123,3 +134,20 @@ begin
 end;
 
 end.
+
+
+{TFDDataType = (dtUnknown,                                              // unknown
+                dtBoolean,                                              // Boolean
+                dtSByte, dtInt16, dtInt32, dtInt64,                     // signed int
+                dtByte, dtUInt16, dtUInt32, dtUInt64,                   // unsinged int
+                dtSingle, dtDouble, dtExtended,                         // float point numbers
+                dtCurrency, dtBCD, dtFmtBCD,                            // high-precision numbers
+                dtDateTime, dtTime, dtDate, dtDateTimeStamp,            // date and time
+                dtTimeIntervalFull, dtTimeIntervalYM, dtTimeIntervalDS, // time interval
+                dtAnsiString, dtWideString, dtByteString,               // string
+                dtBlob, dtMemo, dtWideMemo, dtXML,                      // value blobs
+                dtHBlob, dtHMemo, dtWideHMemo,                          // handle blobs
+                dtHBFile,                                               // external files
+                dtRowSetRef, dtCursorRef, dtRowRef,
+                dtArrayRef, dtParentRowRef,                             // adt -> ftDataSet, ftCursor, ftADT, ftArray
+                dtGUID, dtObject);                                      // adt -> IFDDataStoredObject }

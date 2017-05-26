@@ -127,14 +127,16 @@ var
   BTNDinamic: TButton;
   Tabela: String;
 begin
-  Tabela := (Sender as TButton).Caption;
-  FRMDinamic := LocateForm(Tabela);
-  if Assigned(FRMDinamic) then
+  Tabela := ((Sender as TMenuItem).GetParentMenu as TPopupMenu).PopupComponent.Name;
+  BTNDinamic := LocateButton(Tabela);
+  if Assigned(BTNDinamic) then
      begin
-       FreeAndNil(FRMDinamic);
-       BTNDinamic := LocateButton(Tabela);
-       if Assigned(BTNDinamic) then
-          FreeAndNil(BTNDinamic);
+       FRMDinamic := LocateForm(BTNDinamic.Caption);
+       if Assigned(FRMDinamic) then
+          begin
+            FreeAndNil(FRMDinamic);
+            FreeAndNil(BTNDinamic);
+           end;
      end;
 end;
 
@@ -163,11 +165,11 @@ end;
 
 function TfrmPrincipal.LocateButton(Tabela: String): TButton;
 var
-  NomeFormulario: String;
+  NomeBotao: String;
   BTNDinamic: TButton;
 begin
-  NomeFormulario := 'BTN' + Tabela;
-  BTNDinamic := (Application.FindComponent(NomeFormulario) as TButton);
+  NomeBotao := Tabela;
+  BTNDinamic := (FindComponent(NomeBotao) as TButton);
 
   Result := BTNDinamic;
 end;
@@ -216,7 +218,6 @@ begin
 
            MenuNode := TVDatabases.Items.addChild(TVDatabases.Selected, 'Tables (' + Tables.Count.ToString() + ')') as TTreeNodeProperties;
            MenuNode.ImageIndex := 0;
-//           MenuNode.StateIndex := 0;
            for I := 0 to (Tables.Count - 1) do
              begin
                TableNode := TVDatabases.Items.addChild(MenuNode, Tables[i]) as TTreeNodeProperties;

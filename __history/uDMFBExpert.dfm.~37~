@@ -2,12 +2,11 @@ object dmFBExpert: TdmFBExpert
   OldCreateOrder = False
   OnCreate = DataModuleCreate
   Height = 311
-  Width = 304
+  Width = 463
   object FDCSQLite: TFDConnection
     Params.Strings = (
       'Database=C:\FBExpert\FBExpert.db'
       'DriverID=SQLite')
-    Connected = True
     LoginPrompt = False
     Left = 40
     Top = 16
@@ -23,6 +22,8 @@ object dmFBExpert: TdmFBExpert
   end
   object FDQDatabases: TFDQuery
     Connection = FDCSQLite
+    UpdateOptions.AssignedValues = [uvCheckReadOnly]
+    UpdateOptions.CheckReadOnly = False
     SQL.Strings = (
       'SELECT * FROM DATABASES')
     Left = 40
@@ -39,11 +40,22 @@ object dmFBExpert: TdmFBExpert
     Top = 144
   end
   object CDSDatabases: TClientDataSet
-    Active = True
     Aggregates = <>
     Params = <>
     ProviderName = 'DSPDatabases'
     Left = 40
     Top = 198
+  end
+  object FDMetaInfoQuery: TFDMetaInfoQuery
+    Left = 216
+    Top = 256
+  end
+  object FDQGeneric: TFDQuery
+    UpdateOptions.AssignedValues = [uvCheckReadOnly]
+    UpdateOptions.CheckReadOnly = False
+    SQL.Strings = (
+      'SELECT * FROM DATABASES')
+    Left = 376
+    Top = 16
   end
 end

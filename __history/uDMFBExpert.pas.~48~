@@ -21,6 +21,7 @@ type
     DSPDatabases: TDataSetProvider;
     CDSDatabases: TClientDataSet;
     FDMetaInfoQuery: TFDMetaInfoQuery;
+    FDQGeneric: TFDQuery;
     procedure DataModuleCreate(Sender: TObject);
   private
     { Private declarations }
@@ -79,9 +80,10 @@ function TdmFBExpert.GetTableStructure(Connection: TFDConnection;
 begin
   FDMetaInfoQuery.Connection := Connection;
   FDMetaInfoQuery.MetaInfoKind := mkTableFields;
-  FDMetaInfoQuery.Open(TableName);
-
-
+  FDMetaInfoQuery.ObjectName := TableName;
+  FDMetaInfoQuery.Open();
+  FDMetaInfoQuery.FetchAll();
+  FDMetaInfoQuery.Offline();
   {Set the Connection,
            MetaInfoKind and
            optionally the CatalogName,

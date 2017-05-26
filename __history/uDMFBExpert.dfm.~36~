@@ -2,7 +2,7 @@ object dmFBExpert: TdmFBExpert
   OldCreateOrder = False
   OnCreate = DataModuleCreate
   Height = 311
-  Width = 463
+  Width = 537
   object FDCSQLite: TFDConnection
     Params.Strings = (
       'Database=C:\FBExpert\FBExpert.db'

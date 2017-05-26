@@ -203,7 +203,6 @@ procedure TfrmPrincipal.TVDatabasesDblClick(Sender: TObject);
 var
   BTNDinamic : TButton;
   I: Integer;
-//  J: Integer;
   Tables: TStringList;
   MenuNode: TTreeNodeProperties;
   TableNode: TTreeNodeProperties;

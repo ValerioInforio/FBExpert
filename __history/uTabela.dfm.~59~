@@ -35,14 +35,16 @@ object frmTabela: TfrmTabela
         Width = 615
         Height = 332
         Align = alClient
+        Ctl3D = True
         DataSource = DSTableStructure
+        Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
+        ParentCtl3D = False
         TabOrder = 0
         TitleFont.Charset = DEFAULT_CHARSET
         TitleFont.Color = clWindowText
         TitleFont.Height = -11
         TitleFont.Name = 'Tahoma'
         TitleFont.Style = []
-        OnCellClick = DBGrid1CellClick
         OnDrawColumnCell = DBGrid1DrawColumnCell
         Columns = <
           item
@@ -67,54 +69,42 @@ object frmTabela: TfrmTabela
             Visible = True
           end
           item
-            Alignment = taLeftJustify
+            Expanded = False
+            FieldName = 'DOMAIN'
+            Title.Caption = 'Domain'
+            Width = 158
+            Visible = True
+          end
+          item
             Expanded = False
             FieldName = 'COLUMN_PRECISION'
+            Title.Alignment = taRightJustify
             Title.Caption = 'Size'
             Width = 32
             Visible = True
           end
           item
-            Alignment = taLeftJustify
             Expanded = False
             FieldName = 'COLUMN_SCALE'
+            Title.Alignment = taRightJustify
             Title.Caption = 'Scale'
             Width = 32
             Visible = True
           end
           item
-            Alignment = taLeftJustify
             Expanded = False
             FieldName = 'COLUMN_LENGTH'
+            Title.Alignment = taRightJustify
             Title.Caption = 'Length'
             Width = 40
             Visible = True
           end
           item
+            Alignment = taCenter
             Expanded = False
             FieldName = 'NOT_NULL'
+            Title.Alignment = taCenter
             Title.Caption = 'Not Null'
-            Visible = True
-          end
-          item
-            Expanded = False
-            FieldName = 'TABLE_NAME'
-            Width = 500
-            Visible = True
-          end
-          item
-            Expanded = False
-            FieldName = 'COLUMN_POSITION'
-            Visible = True
-          end
-          item
-            Expanded = False
-            FieldName = 'COLUMN_ATTRIBUTES'
-            Visible = True
-          end
-          item
-            Expanded = False
-            FieldName = 'COLUMN_DATATYPE'
             Visible = True
           end>
       end
@@ -189,6 +179,12 @@ object frmTabela: TfrmTabela
       FieldKind = fkCalculated
       FieldName = 'NOT_NULL'
       Size = 1
+      Calculated = True
+    end
+    object FDMetaInfoQueryDOMAIN: TStringField
+      FieldKind = fkCalculated
+      FieldName = 'DOMAIN'
+      Size = 60
       Calculated = True
     end
   end

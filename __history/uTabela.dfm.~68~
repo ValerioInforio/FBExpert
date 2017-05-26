@@ -243,10 +243,9 @@ object frmTabela: TfrmTabela
       FieldName = 'NOT_NULL'
       Calculated = True
     end
-    object FDMetaInfoQueryPK: TStringField
+    object FDMetaInfoQueryPK: TIntegerField
       FieldKind = fkCalculated
       FieldName = 'PK'
-      Size = 1
       Calculated = True
     end
   end
